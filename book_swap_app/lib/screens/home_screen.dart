@@ -3,6 +3,7 @@ import 'package:book_swap_app/screens/browse_screen.dart';
 import 'package:book_swap_app/screens/my_listings_screen.dart';
 import 'package:book_swap_app/screens/chats_screen.dart';
 import 'package:book_swap_app/screens/settings_screen.dart';
+import 'package:book_swap_app/theme/app_theme.dart'; // import universal colors
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,10 +24,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.black,
       body: _pages[_index],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: AppColors.black,
         currentIndex: _index,
         onTap: (i) => setState(() => _index = i),
+        selectedItemColor: AppColors.blue,
+        unselectedItemColor: Colors.white,
+        type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Browse'),
           BottomNavigationBarItem(icon: Icon(Icons.book), label: 'My Listings'),

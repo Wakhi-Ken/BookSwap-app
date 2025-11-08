@@ -12,7 +12,7 @@
           "package_name": "com.example.book_swap_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": ["1033323140727-ai7042j29iav9lk5cvvnc6kltu90kdiv.apps.googleusercontent.com"],
       "api_key": [
         {
           "current_key": "AIzaSyC2VmyPOuMFjio6WwecHsFfu5yjRongEx0"
@@ -31,7 +31,7 @@
           "package_name": "com.example.todolist"
         }
       },
-      "oauth_client": [],
+      "oauth_client": ["1033323140727-e01i1co31j7lv99r6pupcuol449ab5fj.apps.googleusercontent.com"],
       "api_key": [
         {
           "current_key": "AIzaSyC2VmyPOuMFjio6WwecHsFfu5yjRongEx0"

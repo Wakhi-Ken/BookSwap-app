@@ -6,6 +6,7 @@ class UserProfile {
   final String email;
   final String? photoUrl;
   final Map<String, dynamic> notificationPrefs;
+  final DateTime createdAt;
 
   UserProfile({
     required this.uid,
@@ -13,20 +14,30 @@ class UserProfile {
     required this.email,
     this.photoUrl,
     Map<String, dynamic>? notificationPrefs,
-  }) : notificationPrefs = notificationPrefs ?? {'newOffer': true};
+    DateTime? createdAt,
+  }) : notificationPrefs = notificationPrefs ?? {'newOffer': true},
+       createdAt = createdAt ?? DateTime.now();
 
-  factory UserProfile.fromMap(String id, Map<String, dynamic> m) => UserProfile(
-    uid: id,
-    displayName: m['displayName'] ?? '',
-    email: m['email'] ?? '',
-    photoUrl: m['photoUrl'],
-    notificationPrefs: m['notificationPrefs'] ?? {'newOffer': true},
-  );
+  /// Factory constructor for creating from Firestore map
+  factory UserProfile.fromMap(String id, Map<String, dynamic> map) {
+    return UserProfile(
+      uid: id,
+      displayName: map['displayName'] ?? '',
+      email: map['email'] ?? '',
+      photoUrl: map['photoUrl'],
+      notificationPrefs: map['notificationPrefs'] ?? {'newOffer': true},
+      createdAt: (map['createdAt'] is Timestamp)
+          ? (map['createdAt'] as Timestamp).toDate()
+          : DateTime.tryParse(map['createdAt'] ?? '') ?? DateTime.now(),
+    );
+  }
 
+  /// Convert object to Firestore-friendly map
   Map<String, dynamic> toMap() => {
     'displayName': displayName,
     'email': email,
     'photoUrl': photoUrl,
     'notificationPrefs': notificationPrefs,
+    'createdAt': Timestamp.fromDate(createdAt),
   };
 }

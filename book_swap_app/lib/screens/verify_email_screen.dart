@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:book_swap_app/providers/auth_provider.dart';
+import 'package:book_swap_app/theme/app_theme.dart'; // universal colors
 
 class VerifyEmailScreen extends ConsumerStatefulWidget {
-  const VerifyEmailScreen({Key? key}) : super(key: key);
+  const VerifyEmailScreen({super.key});
 
   @override
   ConsumerState<VerifyEmailScreen> createState() => _VerifyEmailScreenState();
@@ -19,7 +20,15 @@ class _VerifyEmailScreenState extends ConsumerState<VerifyEmailScreen> {
     final user = auth.currentUser;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Verify Email')),
+      backgroundColor: AppColors.black,
+      appBar: AppBar(
+        title: const Text(
+          'Verify Email',
+          style: TextStyle(color: AppColors.blue),
+        ),
+        backgroundColor: AppColors.black,
+        iconTheme: const IconThemeData(color: AppColors.blue),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -28,20 +37,49 @@ class _VerifyEmailScreenState extends ConsumerState<VerifyEmailScreen> {
             Text(
               'A verification email was sent to ${user?.email}. Please verify your email.',
               textAlign: TextAlign.center,
+              style: const TextStyle(color: Colors.white, fontSize: 16),
             ),
             const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: _sending ? null : _resend,
-              child: _sending
-                  ? const CircularProgressIndicator()
-                  : const Text('Resend verification'),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.blue,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                onPressed: _sending ? null : _resend,
+                child: _sending
+                    ? const CircularProgressIndicator(color: Colors.white)
+                    : const Text(
+                        'Resend verification',
+                        style: TextStyle(fontSize: 16),
+                      ),
+              ),
             ),
             const SizedBox(height: 8),
-            ElevatedButton(
-              onPressed: _refreshing ? null : _refresh,
-              child: _refreshing
-                  ? const CircularProgressIndicator()
-                  : const Text('I have verified'),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.blue,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                onPressed: _refreshing ? null : _refresh,
+                child: _refreshing
+                    ? const CircularProgressIndicator(color: Colors.white)
+                    : const Text(
+                        'I have verified',
+                        style: TextStyle(fontSize: 16),
+                      ),
+              ),
             ),
           ],
         ),
