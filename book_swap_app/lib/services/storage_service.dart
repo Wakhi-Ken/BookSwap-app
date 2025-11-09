@@ -6,42 +6,83 @@ import 'package:path/path.dart' as path;
 class StorageService {
   final FirebaseStorage _storage = FirebaseStorage.instance;
 
-  Future<String> uploadBookImage(File imageFile, String bookId) async {
-    if (!imageFile.existsSync()) {
-      throw Exception('File does not exist: ${imageFile.path}');
+  Future<String?> uploadBookImage(File? imageFile, String bookId) async {
+    // Handle null safely
+    if (imageFile == null) {
+      print('⚠️ No image selected — skipping upload.');
+      return null;
     }
 
-    final fileName = path.basename(imageFile.path);
-    final storageRef = _storage.ref().child('book_covers/$bookId/$fileName');
+    // Ensure file exists before upload
+    if (!imageFile.existsSync()) {
+      print('⚠️ File does not exist: ${imageFile.path}');
+      return null;
+    }
 
-    // Await the upload properly
-    final snapshot = await storageRef.putFile(imageFile);
+    try {
+      // Create proper storage path
+      final fileName = path.basename(imageFile.path);
+      final storageRef = _storage.ref().child('book_covers/$bookId/$fileName');
 
-    // Then get download URL
-    final downloadUrl = await snapshot.ref.getDownloadURL();
-    print('✅ File uploaded: $downloadUrl');
-    return downloadUrl;
+      // Upload file
+      final uploadTask = await storageRef.putFile(imageFile);
+
+      // Retrieve download URL
+      final downloadUrl = await uploadTask.ref.getDownloadURL();
+      print('✅ File uploaded successfully: $downloadUrl');
+
+      return downloadUrl;
+    } on FirebaseException catch (e) {
+      print('❌ Firebase upload error: ${e.code} — ${e.message}');
+      return null;
+    } catch (e) {
+      print('❌ Unexpected upload error: $e');
+      return null;
+    }
   }
 }
 
-Future<void> saveBook(File? coverFile, String title) async {
+/// Save book details into Firestore
+Future<void> saveBook({
+  required String title,
+  required String author,
+  required String condition,
+  required String ownerId,
+  required String currentSwapId,
+  String status = 'pending',
+  File? imageFile,
+}) async {
   final storage = StorageService();
+  final booksCollection = FirebaseFirestore.instance.collection('books');
+  final bookDoc = booksCollection.doc(); // Generate Firestore doc ID
 
-  // Generate Firestore doc ID
-  final bookId = FirebaseFirestore.instance.collection('books').doc().id;
+  String? imageUrl;
 
-  String? coverUrl;
-
-  if (coverFile != null) {
-    coverUrl = await storage.uploadBookImage(coverFile, bookId);
+  // Upload image if provided
+  try {
+    imageUrl = await storage.uploadBookImage(imageFile, bookDoc.id);
+  } catch (e) {
+    print('⚠️ Image upload failed: $e');
   }
 
   // Save to Firestore
-  await FirebaseFirestore.instance.collection('books').doc(bookId).set({
-    'title': title,
-    'coverUrl': coverUrl ?? '',
-    'createdAt': FieldValue.serverTimestamp(),
-  });
+  try {
+    await bookDoc.set({
+      'title': title,
+      'author': author,
+      'condition': condition,
+      'ownerId': ownerId,
+      'currentSwapId': currentSwapId,
+      'status': status,
+      'imageUrl': imageUrl, // might be null
+      'createdAt': FieldValue.serverTimestamp(),
+      'updatedAt': FieldValue.serverTimestamp(),
+    });
 
-  print('✅ Book saved with ID $bookId, cover URL: $coverUrl');
+    print('✅ Book saved with ID: ${bookDoc.id}, imageUrl: $imageUrl');
+  } on FirebaseException catch (e) {
+    print('❌ Firestore save error: ${e.code} — ${e.message}');
+  } catch (e) {
+    print('❌ Unexpected Firestore error: $e');
+  }
 }
