@@ -1,16 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+/// Book model representing a book in the swap application
 class Book {
   final String id;
   final String ownerId;
   final String title;
   final String author;
-  final String condition; // New, Like New, Good, Used
-  final String? imageUrl; // matches Firestore field 'imageUrl'
-  final String status; // available, pending, swapped
+  final String condition;
+  final String? imageUrl;
+  final String status;
   final String? currentSwapId;
   final Timestamp createdAt;
 
+  /// Constructor for Book model
   Book({
     required this.id,
     required this.ownerId,
@@ -23,6 +25,7 @@ class Book {
     required this.createdAt,
   });
 
+  /// Factory constructor for creating from Firestore map
   factory Book.fromMap(String id, Map<String, dynamic> m) => Book(
     id: id,
     ownerId: m['ownerId'] ?? '',
@@ -35,6 +38,7 @@ class Book {
     createdAt: m['createdAt'] ?? Timestamp.now(),
   );
 
+  // Convert object to Firestore-friendly map
   Map<String, dynamic> toMap() => {
     'ownerId': ownerId,
     'title': title,

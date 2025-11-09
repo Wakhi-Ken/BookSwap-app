@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:book_swap_app/theme/app_theme.dart'; // import colors
+import 'package:book_swap_app/theme/app_theme.dart';
 
 class ChatsScreen extends StatelessWidget {
   const ChatsScreen({super.key});

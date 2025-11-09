@@ -49,7 +49,7 @@ class AppTheme {
         ), // Changed to white for better contrast
       ),
       colorScheme: ColorScheme.dark(
-        primary: AppColors.blue, // Set primary color
+        primary: AppColors.blue,
         secondary: AppColors.blue,
       ),
     );

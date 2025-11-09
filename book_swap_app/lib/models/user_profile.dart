@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+/// UserProfile model representing a user's profile in the swap application
 class UserProfile {
   final String uid;
   final String displayName;
@@ -8,6 +9,7 @@ class UserProfile {
   final Map<String, dynamic> notificationPrefs;
   final DateTime createdAt;
 
+  /// Constructor for UserProfile model
   UserProfile({
     required this.uid,
     required this.displayName,

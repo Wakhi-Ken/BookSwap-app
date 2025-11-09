@@ -5,6 +5,7 @@ import 'package:book_swap_app/widgets/book_card.dart';
 import 'package:book_swap_app/screens/edit_book_screen.dart';
 import 'package:book_swap_app/theme/app_theme.dart';
 
+/// Screen to browse all book listings
 class BrowseScreen extends ConsumerWidget {
   const BrowseScreen({super.key});
 
@@ -32,7 +33,7 @@ class BrowseScreen extends ConsumerWidget {
               ),
             );
           }
-
+          // Display books in a grid
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: GridView.builder(

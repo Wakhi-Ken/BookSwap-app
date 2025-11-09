@@ -3,12 +3,9 @@ import 'package:book_swap_app/models/book.dart';
 import 'package:book_swap_app/models/swap_offer.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
+/// Service class for Firestore interactions
 class FirestoreService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
-
-  // --------------------
-  // Books
-  // --------------------
 
   Stream<List<Book>> browseBooksStream() => _db
       .collection('books')

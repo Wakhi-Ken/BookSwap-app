@@ -18,6 +18,7 @@ class BookRepository {
     required String author,
     required String condition,
     File? imageFile,
+    String? imageUrl,
   }) async {
     // Generate unique ID
     final id = const Uuid().v4();

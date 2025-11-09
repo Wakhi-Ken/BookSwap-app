@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'signup_screen.dart';
 import 'package:book_swap_app/theme/app_theme.dart'; // import universal colors
 
+/// Login screen for BookSwap app
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
@@ -12,12 +13,14 @@ class LoginScreen extends ConsumerStatefulWidget {
   ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
+/// State class for LoginScreen
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   String _email = '';
   String _password = '';
   bool _loading = false;
 
+  /// Builds the LoginScreen UI
   @override
   Widget build(BuildContext context) {
     return Scaffold(

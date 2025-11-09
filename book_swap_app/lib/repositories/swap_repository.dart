@@ -1,10 +1,12 @@
 import 'package:book_swap_app/services/firestore_service.dart';
 import 'package:uuid/uuid.dart';
 
+/// Repository for managing book swaps
 class SwapRepository {
   final FirestoreService _db;
   SwapRepository(this._db);
 
+  /// Create a new swap request
   Future<String> createSwap({
     required String bookId,
     required String fromUserId,
@@ -24,6 +26,7 @@ class SwapRepository {
     return id;
   }
 
+  /// Update the status of an existing swap
   Future<void> updateSwapStatus(String swapId, String status) async =>
       await _db.updateSwapStatus(swapId, status);
 }

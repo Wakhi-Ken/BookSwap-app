@@ -7,8 +7,9 @@ import 'package:book_swap_app/repositories/book_repository.dart';
 import 'package:book_swap_app/models/book.dart';
 import 'package:book_swap_app/widgets/image_input.dart';
 import 'package:book_swap_app/providers/storage_and_repo_providers.dart';
-import 'package:book_swap_app/theme/app_theme.dart'; // import universal colors
+import 'package:book_swap_app/theme/app_theme.dart';
 
+/// Screen for creating or editing a book
 class EditBookScreen extends ConsumerStatefulWidget {
   final Book? book;
   const EditBookScreen({this.book, super.key});
@@ -17,6 +18,7 @@ class EditBookScreen extends ConsumerStatefulWidget {
   ConsumerState<EditBookScreen> createState() => _EditBookScreenState();
 }
 
+/// State class for EditBookScreen
 class _EditBookScreenState extends ConsumerState<EditBookScreen> {
   final _formKey = GlobalKey<FormState>();
   String _title = '';
@@ -35,6 +37,7 @@ class _EditBookScreenState extends ConsumerState<EditBookScreen> {
     }
   }
 
+  /// Builds the EditBookScreen UI
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;

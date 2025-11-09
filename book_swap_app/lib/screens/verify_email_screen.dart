@@ -10,10 +10,12 @@ class VerifyEmailScreen extends ConsumerStatefulWidget {
   ConsumerState<VerifyEmailScreen> createState() => _VerifyEmailScreenState();
 }
 
+/// State class for VerifyEmailScreen
 class _VerifyEmailScreenState extends ConsumerState<VerifyEmailScreen> {
   bool _sending = false;
   bool _refreshing = false;
 
+  /// Builds the VerifyEmailScreen UI
   @override
   Widget build(BuildContext context) {
     final auth = ref.read(authServiceProvider);
@@ -87,6 +89,7 @@ class _VerifyEmailScreenState extends ConsumerState<VerifyEmailScreen> {
     );
   }
 
+  /// Resends the verification email
   Future<void> _resend() async {
     setState(() => _sending = true);
     try {

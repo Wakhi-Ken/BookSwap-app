@@ -6,6 +6,7 @@ import 'package:book_swap_app/widgets/book_card.dart';
 import 'package:book_swap_app/theme/app_theme.dart';
 import 'package:book_swap_app/screens/edit_book_screen.dart';
 
+/// Screen to display user's book listings
 class MyListingsScreen extends ConsumerWidget {
   const MyListingsScreen({super.key});
 

@@ -14,6 +14,7 @@ class SwapOffer {
   final String bookId;
   final String? offeredBookId;
 
+  /// Constructor, fromMap, and toMap methods for Firestore serialization.
   SwapOffer({
     required this.id,
     required this.fromUserId,
@@ -22,6 +23,7 @@ class SwapOffer {
     this.offeredBookId,
   });
 
+  /// Factory constructor to create a SwapOffer from Firestore data
   factory SwapOffer.fromMap(String id, Map<String, dynamic> data) {
     return SwapOffer(
       id: id,
@@ -32,6 +34,7 @@ class SwapOffer {
     );
   }
 
+  /// Convert SwapOffer to a map for Firestore storage
   Map<String, dynamic> toMap() => {
     'fromUserId': fromUserId,
     'toUserId': toUserId,
@@ -40,6 +43,7 @@ class SwapOffer {
   };
 }
 
+// Screen displaying the user's book listings with edit and delete options
 class MyListingsScreen extends ConsumerWidget {
   const MyListingsScreen({super.key});
 
@@ -69,7 +73,7 @@ class MyListingsScreen extends ConsumerWidget {
               ),
             );
           }
-
+          // Display books in a grid with edit/delete and pending swaps
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: GridView.builder(
@@ -156,9 +160,7 @@ class MyListingsScreen extends ConsumerWidget {
                       ],
                     ),
 
-                    // ----------------------------
                     // Pending swaps section
-                    // ----------------------------
                     StreamBuilder<List<SwapOffer>>(
                       stream: db.pendingSwapsForBook(book.id),
                       builder: (context, snapshot) {
@@ -170,7 +172,7 @@ class MyListingsScreen extends ConsumerWidget {
                         return Column(
                           children: swaps.map((swap) {
                             return Container(
-                              margin: const EdgeInsets.symmetric(vertical: 2),
+                              margin: const EdgeInsets.symmetric(vertical: 1),
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 6,
                                 vertical: 4,

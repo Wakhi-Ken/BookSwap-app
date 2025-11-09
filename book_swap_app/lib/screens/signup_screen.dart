@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:book_swap_app/providers/auth_provider.dart';
 import 'package:book_swap_app/theme/app_theme.dart'; // import universal colors
 
+/// Signup screen for BookSwap app
 class SignupScreen extends ConsumerStatefulWidget {
   const SignupScreen({super.key});
 
@@ -11,6 +12,7 @@ class SignupScreen extends ConsumerStatefulWidget {
   ConsumerState<SignupScreen> createState() => _SignupScreenState();
 }
 
+/// State class for SignupScreen
 class _SignupScreenState extends ConsumerState<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
   String _email = '';

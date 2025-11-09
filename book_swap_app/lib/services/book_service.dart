@@ -34,7 +34,7 @@ class BookService {
       'ownerId': ownerId,
       'currentSwapId': currentSwapId,
       'status': status,
-      'imageUrl': coverUrl ?? '', // important: match your model
+      'imageUrl': coverUrl ?? '',
       'createdAt': FieldValue.serverTimestamp(),
       'updatedAt': FieldValue.serverTimestamp(),
     });

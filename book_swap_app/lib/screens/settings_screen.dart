@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:book_swap_app/providers/auth_provider.dart';
 
+/// Settings screen displaying user info and sign-out option
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
