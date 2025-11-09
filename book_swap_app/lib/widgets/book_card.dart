@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:book_swap_app/models/book.dart';
 import 'package:book_swap_app/screens/book_detail_screen.dart';
-import 'package:book_swap_app/theme/app_theme.dart';
 
 class BookCard extends StatelessWidget {
   final Book book;
@@ -72,7 +71,6 @@ class BookCard extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -94,7 +92,6 @@ class BookCard extends StatelessWidget {
                     'Status: ${book.status}',
                     style: const TextStyle(
                       fontSize: 12,
-                      color: Colors.black87,
                       fontWeight: FontWeight.w500,
                     ),
                   ),

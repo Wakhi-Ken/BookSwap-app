@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:book_swap_app/repositories/swap_repository.dart';
 import 'package:book_swap_app/providers/book_providers.dart';
-import 'package:book_swap_app/theme/app_theme.dart'; // import colors
 
 class BookDetailScreen extends ConsumerWidget {
   final Book book;

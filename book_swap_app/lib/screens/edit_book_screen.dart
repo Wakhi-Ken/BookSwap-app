@@ -4,8 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:book_swap_app/repositories/book_repository.dart';
-import 'package:book_swap_app/services/firestore_service.dart';
-import 'package:book_swap_app/services/storage_service.dart';
 import 'package:book_swap_app/models/book.dart';
 import 'package:book_swap_app/widgets/image_input.dart';
 import 'package:book_swap_app/providers/storage_and_repo_providers.dart';

@@ -6,20 +6,44 @@ class BookService {
   final StorageService _storage = StorageService();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<void> saveBook({required String title, File? coverFile}) async {
-    final bookId = _firestore.collection('books').doc().id;
-
+  /// Save a new book entry into Firestore and upload its image (if provided)
+  Future<String> saveBook({
+    required String title,
+    required String author,
+    required String condition,
+    required String ownerId,
+    required String currentSwapId,
+    String status = 'pending',
+    File? coverFile,
+  }) async {
+    final bookDoc = _firestore.collection('books').doc();
     String? coverUrl;
-    if (coverFile != null) {
-      coverUrl = await _storage.uploadBookImage(coverFile, bookId);
+
+    // Upload image if file exists
+    if (coverFile != null && coverFile.existsSync()) {
+      coverUrl = await _storage.uploadBookImage(coverFile, bookDoc.id);
+    } else if (coverFile != null && !coverFile.existsSync()) {
+      print('⚠️ Provided image file does not exist: ${coverFile.path}');
     }
 
-    await _firestore.collection('books').doc(bookId).set({
+    // Save book details to Firestore
+    await bookDoc.set({
       'title': title,
-      'coverUrl': coverUrl ?? '',
+      'author': author,
+      'condition': condition,
+      'ownerId': ownerId,
+      'currentSwapId': currentSwapId,
+      'status': status,
+      'imageUrl': coverUrl ?? '', // important: match your model
       'createdAt': FieldValue.serverTimestamp(),
+      'updatedAt': FieldValue.serverTimestamp(),
     });
 
-    print('✅ Book saved with ID $bookId, cover URL: $coverUrl');
+    print('✅ Book saved with ID: ${bookDoc.id}');
+    if (coverUrl != null && coverUrl.isNotEmpty) {
+      print('📸 Image uploaded: $coverUrl');
+    }
+
+    return bookDoc.id;
   }
 }

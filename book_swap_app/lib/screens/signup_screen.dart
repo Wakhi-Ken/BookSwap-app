@@ -2,7 +2,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:book_swap_app/providers/auth_provider.dart';
-import 'package:book_swap_app/services/auth_service.dart';
 import 'package:book_swap_app/theme/app_theme.dart'; // import universal colors
 
 class SignupScreen extends ConsumerStatefulWidget {
@@ -22,13 +21,13 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.black,
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         title: const Text(
           'Create Account',
-          style: TextStyle(color: AppColors.blue),
+          style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
         ),
-        backgroundColor: AppColors.black,
+        backgroundColor: const Color.fromARGB(255, 23, 11, 90),
         iconTheme: const IconThemeData(color: AppColors.blue),
       ),
       body: Padding(
@@ -40,15 +39,20 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextFormField(
-                  style: const TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Color.fromARGB(255, 3, 3, 3)),
                   decoration: const InputDecoration(
                     labelText: 'Display name',
-                    labelStyle: TextStyle(color: AppColors.blue),
+                    labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.blue),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.blue, width: 2),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        width: 2,
+                      ),
                     ),
                   ),
                   onChanged: (v) => _displayName = v.trim(),
@@ -58,12 +62,17 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                   style: const TextStyle(color: Colors.white),
                   decoration: const InputDecoration(
                     labelText: 'Email',
-                    labelStyle: TextStyle(color: AppColors.blue),
+                    labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.blue),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.blue, width: 2),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        width: 2,
+                      ),
                     ),
                   ),
                   onChanged: (v) => _email = v.trim(),
@@ -75,12 +84,17 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                   style: const TextStyle(color: Colors.white),
                   decoration: const InputDecoration(
                     labelText: 'Password',
-                    labelStyle: TextStyle(color: AppColors.blue),
+                    labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.blue),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.blue, width: 2),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        width: 2,
+                      ),
                     ),
                   ),
                   obscureText: true,

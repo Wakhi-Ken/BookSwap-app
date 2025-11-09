@@ -3,7 +3,6 @@ import 'package:book_swap_app/screens/browse_screen.dart';
 import 'package:book_swap_app/screens/my_listings_screen.dart';
 import 'package:book_swap_app/screens/chats_screen.dart';
 import 'package:book_swap_app/screens/settings_screen.dart';
-import 'package:book_swap_app/theme/app_theme.dart'; // import universal colors
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

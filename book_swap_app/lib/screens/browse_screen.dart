@@ -10,22 +10,16 @@ class BrowseScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Listen to Firestore books stream
     final booksAsync = ref.watch(browseBooksProvider);
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(
-        255,
-        255,
-        255,
-        255,
-      ), // universal black
+      backgroundColor: const Color(0xFF00032E),
       appBar: AppBar(
         title: const Text(
           'Browse Listings',
-          style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+          style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: const Color.fromARGB(255, 6, 5, 54),
+        backgroundColor: const Color(0xFF00032E),
         iconTheme: const IconThemeData(color: AppColors.blue),
       ),
       body: booksAsync.when(
@@ -34,27 +28,37 @@ class BrowseScreen extends ConsumerWidget {
             return const Center(
               child: Text(
                 'No books found 😔',
-                style: TextStyle(color: Color.fromARGB(255, 229, 255, 0)),
+                style: TextStyle(color: Colors.white, fontSize: 16),
               ),
             );
           }
-          return ListView.builder(
-            itemCount: books.length,
-            itemBuilder: (context, i) => BookCard(book: books[i]),
+
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GridView.builder(
+              itemCount: books.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+                childAspectRatio: 0.65,
+              ),
+              itemBuilder: (context, index) {
+                final book = books[index];
+                return BookCard(book: book);
+              },
+            ),
           );
         },
         loading: () => const Center(
           child: CircularProgressIndicator(color: AppColors.blue),
         ),
         error: (e, s) => Center(
-          child: Text(
-            'Error: $e',
-            style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-          ),
+          child: Text('Error: $e', style: const TextStyle(color: Colors.white)),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color.fromARGB(255, 4, 25, 92),
+        backgroundColor: const Color(0xFF04195C),
         foregroundColor: Colors.white,
         onPressed: () => Navigator.push(
           context,

@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:book_swap_app/providers/book_providers.dart';
 import 'package:book_swap_app/widgets/book_card.dart';
 import 'package:book_swap_app/theme/app_theme.dart';
-import 'package:book_swap_app/services/firestore_service.dart';
 import 'package:book_swap_app/screens/edit_book_screen.dart';
 
 class MyListingsScreen extends ConsumerWidget {
@@ -17,12 +16,9 @@ class MyListingsScreen extends ConsumerWidget {
     final db = ref.read(firestoreServiceProvider);
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(255, 0, 3, 46),
       appBar: AppBar(
-        title: const Text(
-          'My Listings',
-          style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-        ),
+        title: const Text('My Listings', style: TextStyle(color: Colors.white)),
         backgroundColor: const Color.fromARGB(255, 0, 3, 46),
         iconTheme: const IconThemeData(color: AppColors.blue),
       ),
@@ -77,7 +73,7 @@ class MyListingsScreen extends ConsumerWidget {
                                 builder: (_) => AlertDialog(
                                   title: const Text('Delete Book'),
                                   content: const Text(
-                                    'Are you sure you want to delete this book?',
+                                    'Are you sure you want to delete this book and all related swaps?',
                                   ),
                                   actions: [
                                     TextButton(
@@ -98,12 +94,39 @@ class MyListingsScreen extends ConsumerWidget {
                               );
 
                               if (confirmed ?? false) {
-                                await db.deleteBook(book.id);
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text('Book deleted successfully'),
+                                // Show loading indicator
+                                showDialog(
+                                  context: context,
+                                  barrierDismissible: false,
+                                  builder: (_) => const Center(
+                                    child: CircularProgressIndicator(
+                                      color: AppColors.blue,
+                                    ),
                                   ),
                                 );
+
+                                try {
+                                  await db.deleteBookWithSwaps(book.id);
+
+                                  Navigator.pop(context); // remove loader
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text(
+                                        'Book and related swaps deleted successfully',
+                                      ),
+                                    ),
+                                  );
+                                } catch (e) {
+                                  Navigator.pop(context); // remove loader
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Failed to delete book: $e',
+                                      ),
+                                      backgroundColor: Colors.red,
+                                    ),
+                                  );
+                                }
                               }
                             },
                           ),

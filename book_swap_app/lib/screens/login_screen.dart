@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:book_swap_app/providers/auth_provider.dart';
-import 'package:book_swap_app/services/auth_service.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'signup_screen.dart';
 import 'package:book_swap_app/theme/app_theme.dart'; // import universal colors
@@ -22,13 +21,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.black, // universal black
+      backgroundColor: const Color.fromARGB(
+        255,
+        255,
+        255,
+        255,
+      ), // universal black
       appBar: AppBar(
         title: const Text(
           'BookSwap - Login',
-          style: TextStyle(color: AppColors.blue),
+          style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
         ),
-        backgroundColor: AppColors.black,
+        backgroundColor: const Color.fromARGB(255, 18, 9, 70),
         iconTheme: const IconThemeData(color: AppColors.blue),
       ),
       body: Padding(
@@ -40,15 +44,20 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextFormField(
-                  style: const TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                   decoration: const InputDecoration(
                     labelText: 'Email',
-                    labelStyle: TextStyle(color: AppColors.blue),
+                    labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.blue),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.blue, width: 2),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        width: 2,
+                      ),
                     ),
                   ),
                   onChanged: (v) => _email = v.trim(),
@@ -57,15 +66,20 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ),
                 const SizedBox(height: 12),
                 TextFormField(
-                  style: const TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                   decoration: const InputDecoration(
                     labelText: 'Password',
-                    labelStyle: TextStyle(color: AppColors.blue),
+                    labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.blue),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.blue, width: 2),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        width: 2,
+                      ),
                     ),
                   ),
                   obscureText: true,
