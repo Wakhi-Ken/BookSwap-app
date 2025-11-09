@@ -7,16 +7,24 @@ class ChatsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.black, // universal black
+      backgroundColor: const Color.fromARGB(
+        255,
+        255,
+        255,
+        255,
+      ), // universal black
       appBar: AppBar(
-        title: const Text('Chats', style: TextStyle(color: AppColors.blue)),
-        backgroundColor: AppColors.black,
+        title: const Text(
+          'Chats',
+          style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+        ),
+        backgroundColor: const Color.fromARGB(255, 5, 4, 53),
         iconTheme: const IconThemeData(color: AppColors.blue),
       ),
       body: const Center(
         child: Text(
           'Chats (bonus)',
-          style: TextStyle(color: Colors.white, fontSize: 16),
+          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 16),
         ),
       ),
     );

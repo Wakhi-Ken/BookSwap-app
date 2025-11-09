@@ -46,14 +46,14 @@ class _EditBookScreenState extends ConsumerState<EditBookScreen> {
     );
 
     return Scaffold(
-      backgroundColor: AppColors.black,
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         title: Text(
           widget.book == null ? 'Create Book' : 'Edit Book',
-          style: const TextStyle(color: AppColors.blue),
+          style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
         ),
-        backgroundColor: AppColors.black,
-        iconTheme: const IconThemeData(color: AppColors.blue),
+        backgroundColor: const Color.fromARGB(255, 28, 10, 70),
+        iconTheme: const IconThemeData(color: Color.fromARGB(255, 175, 164, 6)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -63,15 +63,18 @@ class _EditBookScreenState extends ConsumerState<EditBookScreen> {
             children: [
               TextFormField(
                 initialValue: _title,
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                 decoration: const InputDecoration(
                   labelText: 'Title',
-                  labelStyle: TextStyle(color: AppColors.blue),
+                  labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.blue),
+                    borderSide: BorderSide(color: Color.fromARGB(255, 0, 0, 0)),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.blue, width: 2),
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      width: 2,
+                    ),
                   ),
                 ),
                 onChanged: (v) => _title = v,
@@ -79,41 +82,49 @@ class _EditBookScreenState extends ConsumerState<EditBookScreen> {
               const SizedBox(height: 12),
               TextFormField(
                 initialValue: _author,
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                 decoration: const InputDecoration(
                   labelText: 'Author',
-                  labelStyle: TextStyle(color: AppColors.blue),
+                  labelStyle: TextStyle(color: Color.fromARGB(255, 10, 10, 10)),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.blue),
+                    borderSide: BorderSide(color: Color.fromARGB(255, 0, 0, 0)),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.blue, width: 2),
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      width: 2,
+                    ),
                   ),
                 ),
                 onChanged: (v) => _author = v,
               ),
               const SizedBox(height: 12),
               DropdownButtonFormField<String>(
-                value: _condition,
-                style: const TextStyle(color: Colors.white),
+                initialValue: _condition,
+                style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                 dropdownColor: AppColors.black,
                 decoration: const InputDecoration(
                   labelText: 'Condition',
-                  labelStyle: TextStyle(color: AppColors.blue),
+                  labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.blue),
+                    borderSide: BorderSide(color: Color.fromARGB(255, 0, 0, 0)),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.blue, width: 2),
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      width: 2,
+                    ),
                   ),
                 ),
-                items: ['New', 'Like New', 'Good', 'Used']
+                items: ['New', 'Like New', 'Good', 'Used', 'Worn']
                     .map(
-                      (c) => DropdownMenuItem(
+                      (c) => DropdownMenuItem<String>(
                         value: c,
                         child: Text(
                           c,
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          ),
                         ),
                       ),
                     )
@@ -124,13 +135,15 @@ class _EditBookScreenState extends ConsumerState<EditBookScreen> {
               ImageInput(onPick: (f) => setState(() => _pickedImage = f)),
               const SizedBox(height: 16),
               _loading
-                  ? const CircularProgressIndicator(color: AppColors.blue)
+                  ? const CircularProgressIndicator(
+                      color: Color.fromARGB(255, 187, 207, 7),
+                    )
                   : SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.blue,
-                          foregroundColor: Colors.white,
+                          foregroundColor: const Color.fromARGB(255, 0, 0, 0),
                           padding: const EdgeInsets.symmetric(vertical: 14),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),

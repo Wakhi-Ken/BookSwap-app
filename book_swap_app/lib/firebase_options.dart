@@ -51,11 +51,11 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyC2VmyPOuMFjio6WwecHsFfu5yjRongEx0',
-    appId: '1:473750465015:android:22e245ce8ec1c61db0a6f2',
-    messagingSenderId: '473750465015',
-    projectId: 'todolist-a20e7',
-    storageBucket: 'todolist-a20e7.firebasestorage.app',
+    apiKey: 'AIzaSyCAift9aDEQhj7PDPmrpvjrtIbWVeuDTJ8',
+    appId: '1:336234675762:android:b3ec420ed0bac7016fc62b',
+    messagingSenderId: '336234675762',
+    projectId: 'bookswapapp-9d4fc',
+    storageBucket: 'bookswapapp-9d4fc.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(

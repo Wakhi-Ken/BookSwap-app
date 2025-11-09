@@ -14,21 +14,31 @@ class MyListingsScreen extends ConsumerWidget {
     final myBooksAsync = ref.watch(myBooksProvider(user.uid));
 
     return Scaffold(
-      backgroundColor: AppColors.black, // universal black
+      backgroundColor: const Color.fromARGB(
+        255,
+        255,
+        255,
+        255,
+      ), // universal black
       appBar: AppBar(
         title: const Text(
           'My Listings',
-          style: TextStyle(color: AppColors.blue),
+          style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
         ),
-        backgroundColor: AppColors.black,
-        iconTheme: const IconThemeData(color: AppColors.blue),
+        backgroundColor: const Color.fromARGB(255, 0, 3, 46),
+        iconTheme: const IconThemeData(
+          color: Color.fromARGB(255, 255, 255, 255),
+        ),
       ),
       body: myBooksAsync.when(
         data: (books) => books.isEmpty
             ? const Center(
                 child: Text(
                   'No listings',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontSize: 16,
+                  ),
                 ),
               )
             : ListView.builder(
@@ -40,7 +50,10 @@ class MyListingsScreen extends ConsumerWidget {
           child: CircularProgressIndicator(color: AppColors.blue),
         ),
         error: (e, s) => Center(
-          child: Text('Error: $e', style: const TextStyle(color: Colors.white)),
+          child: Text(
+            'Error: $e',
+            style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+          ),
         ),
       ),
     );

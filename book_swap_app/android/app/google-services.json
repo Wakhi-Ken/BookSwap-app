@@ -1,45 +1,36 @@
 {
   "project_info": {
-    "project_number": "473750465015",
-    "project_id": "todolist-a20e7",
-    "storage_bucket": "todolist-a20e7.firebasestorage.app"
+    "project_number": "336234675762",
+    "project_id": "bookswapapp-9d4fc",
+    "storage_bucket": "bookswapapp-9d4fc.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:473750465015:android:22e245ce8ec1c61db0a6f2",
+        "mobilesdk_app_id": "1:336234675762:android:b3ec420ed0bac7016fc62b",
         "android_client_info": {
           "package_name": "com.example.book_swap_app"
         }
       },
-      "oauth_client": ["1033323140727-ai7042j29iav9lk5cvvnc6kltu90kdiv.apps.googleusercontent.com"],
+      "oauth_client": [
+        {
+          "client_id": "336234675762-hb2kst2n2s6s1v1vn0kbi6hu0jbnb8jg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyC2VmyPOuMFjio6WwecHsFfu5yjRongEx0"
+          "current_key": "AIzaSyCAift9aDEQhj7PDPmrpvjrtIbWVeuDTJ8"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:473750465015:android:8c320208f5b12fd7b0a6f2",
-        "android_client_info": {
-          "package_name": "com.example.todolist"
-        }
-      },
-      "oauth_client": ["1033323140727-e01i1co31j7lv99r6pupcuol449ab5fj.apps.googleusercontent.com"],
-      "api_key": [
-        {
-          "current_key": "AIzaSyC2VmyPOuMFjio6WwecHsFfu5yjRongEx0"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "336234675762-hb2kst2n2s6s1v1vn0kbi6hu0jbnb8jg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

@@ -6,7 +6,7 @@ class Book {
   final String title;
   final String author;
   final String condition; // New, Like New, Good, Used
-  final String? imageUrl;
+  final String? imageUrl; // renamed for clarity
   final String status; // available, pending, swapped
   final String? currentSwapId;
   final Timestamp createdAt;
@@ -23,18 +23,20 @@ class Book {
     required this.createdAt,
   });
 
+  // Factory to create Book from Firestore document
   factory Book.fromMap(String id, Map<String, dynamic> m) => Book(
     id: id,
     ownerId: m['ownerId'] ?? '',
     title: m['title'] ?? '',
     author: m['author'] ?? '',
     condition: m['condition'] ?? 'Used',
-    imageUrl: m['imageUrl'],
+    imageUrl: m['imageUrl'], // image from Storage
     status: m['status'] ?? 'available',
     currentSwapId: m['currentSwapId'],
     createdAt: m['createdAt'] ?? Timestamp.now(),
   );
 
+  // Convert to Firestore map
   Map<String, dynamic> toMap() => {
     'ownerId': ownerId,
     'title': title,

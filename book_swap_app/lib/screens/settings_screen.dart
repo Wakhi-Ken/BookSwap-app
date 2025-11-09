@@ -12,11 +12,14 @@ class SettingsScreen extends ConsumerWidget {
     final user = FirebaseAuth.instance.currentUser!;
 
     return Scaffold(
-      backgroundColor: AppColors.black,
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
-        title: const Text('Settings', style: TextStyle(color: AppColors.blue)),
-        backgroundColor: AppColors.black,
-        iconTheme: const IconThemeData(color: AppColors.blue),
+        title: const Text(
+          'Settings',
+          style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+        ),
+        backgroundColor: const Color.fromARGB(255, 20, 4, 63),
+        iconTheme: const IconThemeData(color: Color.fromARGB(255, 0, 0, 0)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -25,18 +28,24 @@ class SettingsScreen extends ConsumerWidget {
           children: [
             Text(
               'Email: ${user.email}',
-              style: const TextStyle(color: Colors.white, fontSize: 16),
+              style: const TextStyle(
+                color: Color.fromARGB(255, 0, 0, 0),
+                fontSize: 16,
+              ),
             ),
             const SizedBox(height: 10),
             Text(
               'Display name: ${user.displayName ?? ''}',
-              style: const TextStyle(color: Colors.white, fontSize: 16),
+              style: const TextStyle(
+                color: Color.fromARGB(255, 0, 0, 0),
+                fontSize: 16,
+              ),
             ),
             const SizedBox(height: 20),
             const Text(
               'Notifications',
               style: TextStyle(
-                color: AppColors.blue,
+                color: Color.fromARGB(255, 0, 0, 0),
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
@@ -46,16 +55,16 @@ class SettingsScreen extends ConsumerWidget {
               onChanged: (v) {},
               title: const Text(
                 'New offers (simulated)',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
               ),
-              activeColor: AppColors.blue,
+              activeThumbColor: const Color.fromARGB(255, 206, 202, 5),
             ),
             const Spacer(),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.blue,
+                  backgroundColor: const Color.fromARGB(255, 7, 11, 68),
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(

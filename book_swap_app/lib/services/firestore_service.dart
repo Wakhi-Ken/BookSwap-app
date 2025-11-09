@@ -5,7 +5,11 @@ import 'package:book_swap_app/models/swap_offer.dart';
 class FirestoreService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
+  // --------------------
   // Books
+  // --------------------
+
+  /// Stream of all available books (for Browse)
   Stream<List<Book>> browseBooksStream() => _db
       .collection('books')
       .where('status', isEqualTo: 'available')
@@ -15,6 +19,7 @@ class FirestoreService {
         (snap) => snap.docs.map((d) => Book.fromMap(d.id, d.data())).toList(),
       );
 
+  /// Stream of books owned by a specific user
   Stream<List<Book>> myBooksStream(String uid) => _db
       .collection('books')
       .where('ownerId', isEqualTo: uid)
@@ -24,16 +29,23 @@ class FirestoreService {
         (snap) => snap.docs.map((d) => Book.fromMap(d.id, d.data())).toList(),
       );
 
-  Future<void> createBook(String id, Map<String, dynamic> data) async =>
-      await _db.collection('books').doc(id).set(data);
+  /// Create a new book in Firestore
+  Future<void> createBook(Book book) async =>
+      await _db.collection('books').doc(book.id).set(book.toMap());
 
+  /// Update an existing book in Firestore
   Future<void> updateBook(String id, Map<String, dynamic> data) async =>
       await _db.collection('books').doc(id).update(data);
 
+  /// Delete a book from Firestore
   Future<void> deleteBook(String id) async =>
       await _db.collection('books').doc(id).delete();
 
+  // --------------------
   // Swaps
+  // --------------------
+
+  /// Stream of swaps where the current user is the recipient
   Stream<List<SwapOffer>> swapsForUser(String uid) => _db
       .collection('swaps')
       .where('toUserId', isEqualTo: uid)
@@ -44,6 +56,7 @@ class FirestoreService {
             snap.docs.map((d) => SwapOffer.fromMap(d.id, d.data())).toList(),
       );
 
+  /// Stream of swaps created by the user
   Stream<List<SwapOffer>> myOffersByUser(String uid) => _db
       .collection('swaps')
       .where('fromUserId', isEqualTo: uid)
@@ -54,23 +67,30 @@ class FirestoreService {
             snap.docs.map((d) => SwapOffer.fromMap(d.id, d.data())).toList(),
       );
 
-  Future<void> createSwap(String id, Map<String, dynamic> data) async {
-    final swapRef = _db.collection('swaps').doc(id);
+  /// Create a new swap and update the book status in a transaction
+  Future<void> createSwap(String swapId, Map<String, dynamic> data) async {
+    final swapRef = _db.collection('swaps').doc(swapId);
     final bookRef = _db.collection('books').doc(data['bookId']);
+
     await _db.runTransaction((tx) async {
       tx.set(swapRef, data);
-      tx.update(bookRef, {'status': 'pending', 'currentSwapId': id});
+      tx.update(bookRef, {'status': 'pending', 'currentSwapId': swapId});
     });
   }
 
+  /// Update swap status and update the corresponding book
   Future<void> updateSwapStatus(String swapId, String status) async {
     final swapRef = _db.collection('swaps').doc(swapId);
     final snap = await swapRef.get();
+
     if (!snap.exists) return;
+
     final swap = SwapOffer.fromMap(snap.id, snap.data()!);
     final bookRef = _db.collection('books').doc(swap.bookId);
+
     await _db.runTransaction((tx) async {
       tx.update(swapRef, {'status': status});
+
       if (status == 'accepted') {
         tx.update(bookRef, {'status': 'swapped', 'currentSwapId': null});
       } else if (status == 'rejected' || status == 'cancelled') {

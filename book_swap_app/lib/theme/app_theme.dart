@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static const Color black = Colors.black;
-  static const Color blue = Color(0xFF0051FF);
+  static const Color blue = Color.fromARGB(255, 255, 217, 0);
 }
 
 class AppTheme {
@@ -10,10 +10,20 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
-      primaryColor: AppColors.blue,
-      scaffoldBackgroundColor: AppColors.black,
+      primaryColor: AppColors.blue, // Set primary color
+      scaffoldBackgroundColor: const Color.fromARGB(
+        255,
+        0,
+        0,
+        0,
+      ), // Changed to black for dark theme
       appBarTheme: AppBarTheme(
-        backgroundColor: AppColors.black,
+        backgroundColor: const Color.fromARGB(
+          255,
+          0,
+          0,
+          0,
+        ), // Changed to black for dark theme
         foregroundColor: AppColors.blue,
         elevation: 0,
       ),
@@ -34,10 +44,12 @@ class AppTheme {
           borderSide: BorderSide(color: AppColors.blue, width: 2),
         ),
         hintStyle: const TextStyle(color: Colors.grey),
-        labelStyle: TextStyle(color: AppColors.blue),
+        labelStyle: TextStyle(
+          color: Colors.white,
+        ), // Changed to white for better contrast
       ),
       colorScheme: ColorScheme.dark(
-        primary: AppColors.blue,
+        primary: AppColors.blue, // Set primary color
         secondary: AppColors.blue,
       ),
     );

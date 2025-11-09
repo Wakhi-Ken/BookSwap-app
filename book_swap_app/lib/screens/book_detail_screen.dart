@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:book_swap_app/repositories/swap_repository.dart';
 import 'package:book_swap_app/providers/book_providers.dart';
-import 'package:book_swap_app/services/firestore_service.dart';
 import 'package:book_swap_app/theme/app_theme.dart'; // import colors
 
 class BookDetailScreen extends ConsumerWidget {
@@ -18,11 +17,19 @@ class BookDetailScreen extends ConsumerWidget {
     final isOwner = user.uid == book.ownerId;
 
     return Scaffold(
-      backgroundColor: AppColors.black, // universal black
+      backgroundColor: const Color.fromARGB(
+        255,
+        255,
+        255,
+        255,
+      ), // universal black
       appBar: AppBar(
-        title: Text(book.title, style: const TextStyle(color: AppColors.blue)),
-        backgroundColor: AppColors.black,
-        iconTheme: const IconThemeData(color: AppColors.blue),
+        title: Text(
+          book.title,
+          style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+        ),
+        backgroundColor: const Color.fromARGB(255, 14, 3, 71),
+        iconTheme: const IconThemeData(color: Color.fromARGB(255, 251, 255, 0)),
         actions: [
           if (isOwner)
             IconButton(
@@ -50,13 +57,16 @@ class BookDetailScreen extends ConsumerWidget {
               style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
-                color: AppColors.blue,
+                color: Color.fromARGB(255, 0, 0, 0),
               ),
             ),
             const SizedBox(height: 4),
             Text(
               'by ${book.author}',
-              style: const TextStyle(color: Colors.white, fontSize: 16),
+              style: const TextStyle(
+                color: Color.fromARGB(255, 22, 0, 0),
+                fontSize: 16,
+              ),
             ),
             const SizedBox(height: 8),
             Chip(
@@ -64,16 +74,19 @@ class BookDetailScreen extends ConsumerWidget {
                 book.condition,
                 style: const TextStyle(color: AppColors.blue),
               ),
-              backgroundColor: AppColors.black,
+              backgroundColor: const Color.fromARGB(255, 255, 255, 255),
               shape: RoundedRectangleBorder(
-                side: const BorderSide(color: AppColors.blue),
+                side: const BorderSide(color: Color.fromARGB(255, 8, 7, 0)),
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
             const SizedBox(height: 16),
             Text(
               'Status: ${book.status}',
-              style: const TextStyle(color: Colors.white, fontSize: 16),
+              style: const TextStyle(
+                color: Color.fromARGB(255, 0, 0, 0),
+                fontSize: 16,
+              ),
             ),
             const SizedBox(height: 16),
             if (!isOwner)
@@ -81,8 +94,8 @@ class BookDetailScreen extends ConsumerWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.blue,
-                    foregroundColor: Colors.white,
+                    backgroundColor: const Color.fromARGB(255, 213, 228, 5),
+                    foregroundColor: const Color.fromARGB(255, 0, 0, 0),
                     padding: const EdgeInsets.symmetric(vertical: 14),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
