@@ -61,7 +61,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                 ),
                 const SizedBox(height: 12),
                 TextFormField(
-                  style: const TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                   decoration: const InputDecoration(
                     labelText: 'Email',
                     labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
@@ -83,7 +83,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                 ),
                 const SizedBox(height: 12),
                 TextFormField(
-                  style: const TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                   decoration: const InputDecoration(
                     labelText: 'Password',
                     labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
