@@ -72,7 +72,7 @@ class BookDetailScreen extends ConsumerWidget {
             Chip(
               label: Text(
                 book.condition,
-                style: const TextStyle(color: AppColors.blue),
+                style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
               ),
               backgroundColor: const Color.fromARGB(255, 255, 255, 255),
               shape: RoundedRectangleBorder(

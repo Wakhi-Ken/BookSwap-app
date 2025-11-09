@@ -24,14 +24,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.black,
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       body: _pages[_index],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: AppColors.black,
+        backgroundColor: const Color.fromARGB(255, 6, 8, 77),
         currentIndex: _index,
         onTap: (i) => setState(() => _index = i),
-        selectedItemColor: AppColors.blue,
-        unselectedItemColor: Colors.white,
+        selectedItemColor: const Color.fromARGB(255, 206, 206, 7),
+        unselectedItemColor: const Color.fromARGB(255, 95, 91, 91),
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Browse'),
