@@ -27,7 +27,7 @@ Setup
 
 Clone the repo:
 
-git clone https://github.com/yourusername/book_swap_app.git
+git clone https://github.com/Wakhi-Ken/BookSwap-app.git
 cd book_swap_app
 
 
