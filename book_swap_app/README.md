@@ -1,4 +1,4 @@
-BookSwap App
+## BookSwap App
 
 A Flutter app for exchanging books. Users can browse books, post their own, make swap offers, and track swap statuses.
 
@@ -14,7 +14,7 @@ Make swap offers and track status (Pending, Accepted, Rejected)
 
 Real-time updates with Firestore streams
 
-Getting Started
+## Getting Started
 Requirements
 
 Flutter SDK
