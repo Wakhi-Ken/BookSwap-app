@@ -143,7 +143,10 @@ class MyListingsScreen extends ConsumerWidget {
           child: CircularProgressIndicator(color: AppColors.blue),
         ),
         error: (e, s) => Center(
-          child: Text('Error: $e', style: const TextStyle(color: Colors.white)),
+          child: Text(
+            'Error: $e',
+            style: const TextStyle(color: Color.fromARGB(255, 3, 3, 3)),
+          ),
         ),
       ),
     );

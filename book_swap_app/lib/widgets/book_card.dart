@@ -16,76 +16,93 @@ class BookCard extends StatelessWidget {
         MaterialPageRoute(builder: (_) => BookDetailScreen(book: book)),
       ),
       child: Card(
-        color: Colors.white,
+        color: Colors.white24, // semi-transparent card for dark theme
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         elevation: 3,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image section
+            // Image with title overlay
             Expanded(
-              child: ClipRRect(
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(12),
-                ),
-                child: book.imageUrl != null && book.imageUrl!.isNotEmpty
-                    ? Image.network(
-                        book.imageUrl!,
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        loadingBuilder: (context, child, progress) {
-                          if (progress == null) return child;
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        },
-                        errorBuilder: (context, error, stackTrace) =>
-                            const Center(
+              child: Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(12),
+                    ),
+                    child: book.imageUrl != null && book.imageUrl!.isNotEmpty
+                        ? Image.network(
+                            book.imageUrl!,
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            loadingBuilder: (context, child, progress) {
+                              if (progress == null) return child;
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            },
+                            errorBuilder: (context, error, stackTrace) =>
+                                const Center(
+                                  child: Icon(
+                                    Icons.broken_image,
+                                    size: 50,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                          )
+                        : Container(
+                            color: Colors.grey[800],
+                            child: const Center(
                               child: Icon(
-                                Icons.broken_image,
+                                Icons.book,
                                 size: 50,
-                                color: Colors.grey,
+                                color: Colors.white,
                               ),
                             ),
-                      )
-                    : Container(
-                        color: Colors.grey[300],
-                        child: const Center(
-                          child: Icon(
-                            Icons.book,
-                            size: 50,
-                            color: Colors.white,
                           ),
-                        ),
+                  ),
+                  // Title overlay
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      color: Colors.black54,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 4,
+                        horizontal: 6,
                       ),
+                      child: Text(
+                        book.title,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            // Text info section
+            // Info section
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    book.title,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
                     'by ${book.author}',
-                    style: const TextStyle(fontSize: 14, color: Colors.black87),
+                    style: const TextStyle(fontSize: 12, color: Colors.white70),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 2),
                   Text(
                     book.condition,
-                    style: const TextStyle(fontSize: 12, color: Colors.black54),
+                    style: const TextStyle(fontSize: 12, color: Colors.white60),
                   ),
                   const SizedBox(height: 2),
                   Text(
@@ -93,8 +110,20 @@ class BookCard extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
+                      color: Colors.white70,
                     ),
                   ),
+                  if (showOwner)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 2),
+                      child: Text(
+                        'Owner ID: ${book.ownerId}',
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.white60,
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),
